@@ -1,7 +1,7 @@
 const checkbox = document.getElementById('automatic-check');
 
-const updateUI = savedSettings => {
-    checkbox.checked = savedSettings.automaticCheck;
+const updateUI = storedSettings => {
+    checkbox.checked = storedSettings.automaticCheck;
 }
 
 const onError = () => {}
