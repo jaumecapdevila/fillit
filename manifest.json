@@ -1,14 +1,25 @@
 {
-
   "description": "A simple firefox extension to auto fill the forms of a web page",
   "manifest_version": 2,
   "name": "fillit",
   "version": "1.0",
-  
+
   "content_scripts": [{
     "matches": ["<all_urls>"],
     "js": ["fillit.js"]
   }],
+
+  "icons": {
+    "48": "icons/block.svg",
+    "96": "icons/block.svg"
+  },
+
+  "permissions": ["storage"],
+
+  "options_ui": {
+    "page": "popup/fillit_popup.html",
+    "browser_style": true
+  },
 
   "applications": {
     "gecko": {
