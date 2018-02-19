@@ -10,8 +10,8 @@
   }],
 
   "icons": {
-    "48": "icons/block.svg",
-    "96": "icons/block.svg"
+    "48": "icons/fillit.svg",
+    "96": "icons/fillit.svg"
   },
 
   "permissions": ["storage"],
