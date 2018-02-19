@@ -1,15 +1,28 @@
 const forms = document.getElementsByTagName('form');
 
-for (const form of forms) {
-    const inputs = form.getElementsByTagName('input');
-    for (const input of inputs) {
-        if (!hasToBeChecked(input)) {
-            continue;
+browser.storage.local.get()
+    .then((storedSettings) => {
+        if (storedSettings.automaticCheck) {
+            autoFill()
         }
-        const inputPlaceholder = input.placeholder || defaultValueForType(input.type);
-        input.value = inputPlaceholder;
+    })
+    .catch(() => {});
+
+
+const autoFill = () => {
+    for (const form of forms) {
+        const inputs = form.getElementsByTagName('input');
+        for (const input of inputs) {
+            if (!hasToBeChecked(input)) {
+                continue;
+            }
+            const inputPlaceholder = input.placeholder || defaultValueForType(input.type);
+            input.value = inputPlaceholder;
+        }
     }
 }
+
+
 
 
 function defaultValueForType(type) {
