@@ -6,13 +6,13 @@ for (const form of forms) {
         if (!hasToBeChecked(input)) {
             continue;
         }
-        const inputPlaceholder = input.placeholder || getDefaultValueFromType(input.type);
+        const inputPlaceholder = input.placeholder || defaultValueForType(input.type);
         input.value = inputPlaceholder;
     }
 }
 
 
-function getDefaultValueFromType(type) {
+function defaultValueForType(type) {
     const defaultValues = {
         text: 'Sample text',
         password: 'coolPassword',
