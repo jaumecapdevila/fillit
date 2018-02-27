@@ -1,12 +1,13 @@
 import {
-    fillForms,
-    findFormsInCurrentView
-} from './formManager.js';
+    init,
+} from './manager';
 
-browser.storage.local.get()
-    .then((storedSettings) => {
-        if (storedSettings.automaticCheck) {
-            fillForms(findFormsInCurrentView())
-        }
-    })
-    .catch(() => {});
+init();
+
+// browser.storage.local.get()
+//     .then((storedSettings) => {
+//         if (storedSettings.automaticCheck) {
+//             fillForms(findFormsInCurrentView())
+//         }
+//     })
+//     .catch(() => {});
