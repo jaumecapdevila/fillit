@@ -20,7 +20,7 @@ function wrapForm(form) {
   const wrapper = document.createElement('div');
   parent.replaceChild(wrapper, form);
   wrapper.appendChild(form);
-  wrapper.classList.add('fillit-container');
+  wrapper.classList.add('fillit-wrapper');
   wrapper.firstChild.insertAdjacentHTML('beforebegin', htmlButton);
 }
 
@@ -63,21 +63,17 @@ function defaultValueForType(type) {
 }
 
 function hasToBeChecked(input) {
-    const availableTypes = [
-        'text',
-        'password',
-        'email',
-        'tel',
-        'url',
-        'number',
-        'range',
-        'date',
-        'color',
-    ];
-    if (availableTypes.indexOf(input.type) != -1) {
-        return true;
-    }
-    return false;
+    return [
+      'text',
+      'password',
+      'email',
+      'tel',
+      'url',
+      'number',
+      'range',
+      'date',
+      'color',
+    ].indexOf(input.type) !== -1 ? true: false;
 }
 
 export {
