@@ -58,7 +58,7 @@ function defaultValueForType(type) {
         range: 1,
         date: Date(),
         color: '#FFFFFF'
-    }
+    };
     return defaultValues[type];
 }
 
