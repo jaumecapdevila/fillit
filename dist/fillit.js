@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -68,19 +68,23 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__manager__ = __webpack_require__(1);
+const htmlButton = `
+  <button class="fillit-btn" aria-label="Fill form">Fill it</button>`;
+/* harmony export (immutable) */ __webpack_exports__["b"] = htmlButton;
 
 
-Object(__WEBPACK_IMPORTED_MODULE_0__manager__["a" /* init */])();
+const defaultConfig = {
+  text: 'Sample text',
+  password: 'password',
+  email: 'john@doe.com',
+  tel: '+00123123123',
+  url: 'https://sample-domain.test',
+  number: 1,
+  date: Date(),
+  color: '#FFFFFF'
+};
+/* harmony export (immutable) */ __webpack_exports__["a"] = defaultConfig;
 
-// browser.storage.local.get()
-//     .then((storedSettings) => {
-//         if (storedSettings.automaticCheck) {
-//             fillForms(findFormsInCurrentView())
-//         }
-//     })
-//     .catch(() => {});
 
 
 /***/ }),
@@ -88,8 +92,32 @@ Object(__WEBPACK_IMPORTED_MODULE_0__manager__["a" /* init */])();
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__manager__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(0);
+
+
+
+
+Object(__WEBPACK_IMPORTED_MODULE_0__manager__["a" /* init */])();
+
+browser.storage.local.get()
+    .then((storedSettings) => {
+        if (!storedSettings.fillitSettings) {
+            browser.storage.local.set({
+                fillitSettings: __WEBPACK_IMPORTED_MODULE_1__util__["a" /* defaultConfig */],
+            });
+        }
+    });
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return init; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util__ = __webpack_require__(0);
 
 
 function init() {
@@ -113,7 +141,7 @@ function wrapForm(form) {
   parent.replaceChild(wrapper, form);
   wrapper.appendChild(form);
   wrapper.classList.add('fillit-wrapper');
-  wrapper.firstChild.insertAdjacentHTML('beforebegin', __WEBPACK_IMPORTED_MODULE_0__util__["a" /* htmlButton */]);
+  wrapper.firstChild.insertAdjacentHTML('beforebegin', __WEBPACK_IMPORTED_MODULE_0__util__["b" /* htmlButton */]);
 }
 
 function fillFormOnClick(button){
@@ -150,7 +178,7 @@ function defaultValueForType(type) {
         range: 1,
         date: Date(),
         color: '#FFFFFF'
-    }
+    };
     return defaultValues[type];
 }
 
@@ -168,17 +196,6 @@ function hasToBeChecked(input) {
     ].indexOf(input.type) !== -1 ? true: false;
 }
 
-
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-const htmlButton = `
-  <button class="fillit-btn" aria-label="Fill form">Fill it</button>`;
-/* harmony export (immutable) */ __webpack_exports__["a"] = htmlButton;
 
 
 

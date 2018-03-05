@@ -1,16 +1,31 @@
-const checkbox = document.getElementById('automatic-check');
+const inputs = document.getElementsByTagName('input');
+const saveSettingsButton = document.getElementById('save-settings');
 
 const updateUI = storedSettings => {
-    checkbox.checked = storedSettings.automaticCheck;
-}
+    console.log(storedSettings);
 
-const onError = () => {}
+    for (const input of inputs) {
+        if (storedSettings.fillitSettings[input.name] !== undefined) {
+            input.value = storedSettings.fillitSettings[input.name];
+        }
+    }
+};
 
-const persistCurrentSettings = () => {
+const currentSettingsFromView = () => {
+    const settings = {};
+    for (const input of inputs) {
+        settings[input.name] = input.value;
+    }
+    return settings;
+};
+
+const onError = () => {};
+
+const updateCurrentSettings = () => {
     browser.storage.local.set({
-        automaticCheck: checkbox.checked,
+        fillitSettings: currentSettingsFromView(),
     });
-}
+};
 
 browser.storage.local.get().then(updateUI, onError);
-checkbox.addEventListener("change", persistCurrentSettings);
+saveSettingsButton.addEventListener('click', updateCurrentSettings);
