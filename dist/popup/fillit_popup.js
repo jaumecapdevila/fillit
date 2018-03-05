@@ -2,8 +2,6 @@ const inputs = document.getElementsByTagName('input');
 const saveSettingsButton = document.getElementById('save-settings');
 
 const updateUI = storedSettings => {
-    console.log(storedSettings);
-
     for (const input of inputs) {
         if (storedSettings.fillitSettings[input.name] !== undefined) {
             input.value = storedSettings.fillitSettings[input.name];
